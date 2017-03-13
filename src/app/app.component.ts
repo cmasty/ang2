@@ -5,7 +5,6 @@ import {TodoDataService} from './todo-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
   providers: [TodoDataService]
 })
 export class AppComponent {
@@ -13,6 +12,17 @@ export class AppComponent {
   newTodo: Todo = new Todo();
 
   constructor(private todoDataService: TodoDataService) {
+  }
+
+  getLeftTodo(todos) {
+    let openTodos = 0
+    for (let i in todos) {
+      if(todos[i].complete === false)
+        {
+          openTodos = openTodos + 1
+        }
+    }
+    return openTodos
   }
 
   addTodo() {
